@@ -2,6 +2,7 @@
 
 
 This project is a regression analysis for Home Values based on a few variables such as square feet of the home, number of bedrooms, if there is a garage, etc.
+
 It also gives users the option to input their own values and the model will spit out an estimation. 
 
 
