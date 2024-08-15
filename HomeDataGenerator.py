@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 
-
 # Synthetic data
 np.random.seed(0)
 X = pd.DataFrame({
