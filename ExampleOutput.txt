@@ -1,0 +1,51 @@
+Training Mean Squared Error: 65352083.93551014
+
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.999
+Model:                            OLS   Adj. R-squared:                  0.999
+Method:                 Least Squares   F-statistic:                 1.128e+04
+Date:                Thu, 15 Aug 2024   Prob (F-statistic):          3.49e-106
+Time:                        18:28:25   Log-Likelihood:                -833.33
+No. Observations:                  80   AIC:                             1681.
+Df Residuals:                      73   BIC:                             1697.
+Df Model:                           6                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+const              5.074e+04   5409.012      9.380      0.000       4e+04    6.15e+04
+SquareFootage       199.8377      1.001    199.680      0.000     197.843     201.832
+NumberOfBedrooms   1.003e+04    556.187     18.030      0.000    8919.604    1.11e+04
+NumberOfBathrooms  4519.9160    721.002      6.269      0.000    3082.960    5956.872
+Stories            1.101e+04   1210.988      9.091      0.000    8596.196    1.34e+04
+HasGarage          5424.4916   1967.515      2.757      0.007    1503.239    9345.744
+HouseAge          -1.006e+04     78.055   -128.911      0.000   -1.02e+04   -9906.522
+==============================================================================
+Omnibus:                        2.979   Durbin-Watson:                   1.928
+Prob(Omnibus):                  0.225   Jarque-Bera (JB):                2.263
+Skew:                          -0.293   Prob(JB):                        0.323
+Kurtosis:                       3.579   Cond. No.                     1.69e+04
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.69e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+
+USER INPUT SECTION
+-----------------------------------------------------------------
+Enter the house details -
+Square Footage: 3657
+Number of Bedrooms: 5
+Number of Bathrooms: 6
+Year Built: 2016
+Number of Floors: 3
+Does the house have a garage? (y/n): y
+
+The predicted fair listing price for this house is: $816,761.99
+
+Do you want to check if a specific price is fair? (y/n): y
+Enter the price you want to check this house at: 768,998,763.03
+The price $768,998,763.03 is above market value.
