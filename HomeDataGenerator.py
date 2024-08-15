@@ -3,7 +3,7 @@ import pandas as pd
 
 # Synthetic data
 np.random.seed(0)
-X = pd.DataFrame({
+df = pd.DataFrame({
     'SquareFootage': np.random.randint(1000, 4501, 100),
     'NumberOfBedrooms': np.random.randint(2, 8, 100),
     'NumberOfBathrooms': np.random.randint(1, 6, 100),
@@ -12,7 +12,7 @@ X = pd.DataFrame({
     'HasGarage': np.random.randint(0, 2, 100)  #Dummy variable for garage
 })
 
-print(X)
+print(df)
 print("Creating csv...")
-X.to_csv('HomePrices.csv', index = False)
+df.to_csv('HomePrices.csv', index = False)
 print("Done")
