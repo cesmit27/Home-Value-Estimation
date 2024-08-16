@@ -12,7 +12,7 @@ import datetime
 #Synthetic training data because I didn't look for a real dataset. I created a csv file with these random numbers that I'll include
 '''
 np.random.seed(0)
-X = pd.DataFrame({
+x = pd.DataFrame({
     'SquareFootage': np.random.randint(1000, 4501, 100),
     'NumberOfBedrooms': np.random.randint(2, 8, 100),
     'NumberOfBathrooms': np.random.randint(1, 6, 100),
@@ -21,19 +21,19 @@ X = pd.DataFrame({
     'HasGarage': np.random.randint(0, 2, 100)  #Dummy variable for garage
 })
 '''
-X = pd.read_csv('HomeData.csv')
+
+x = pd.read_csv('HomeData.csv')
 
 #Create a new column, HouseAge, needed due to issues with YearBuilt messing up home value estimations
 current_year = datetime.datetime.now().year
-X['HouseAge'] = current_year - X['YearBuilt']
-
-X = X.drop(columns=['YearBuilt'])
+x['HouseAge'] = current_year - x['YearBuilt']
+x = x.drop(columns=['YearBuilt'])
 
 #Base home value for home with 0 sq ft, 0 bedrooms, etc. Adds/reduces value based on criteria. Adds random noise to account for real world fluctuations 
-y = 50000 + 200 * X['SquareFootage'] + 10000 * X['NumberOfBedrooms'] + 5000 * X['NumberOfBathrooms'] - 10000 * X['HouseAge'] + 10000 * X['Stories'] + 5000 * X['HasGarage'] + np.random.normal(0, 10000, 100)
+y = 50000 + 200 * x['SquareFootage'] + 10000 * x['NumberOfBedrooms'] + 5000 * x['NumberOfBathrooms'] - 10000 * x['HouseAge'] + 10000 * x['Stories'] + 5000 * x['HasGarage'] + np.random.normal(0, 10000, 100)
 
 # Train-test split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
 
 # Preprocessing pipeline
 preprocessor = ColumnTransformer(
@@ -47,7 +47,7 @@ model = Pipeline(steps=[
 ])
 
 # Train the model
-model.fit(X_train, y_train)
+model.fit(x_train, y_train)
 
 '''
 #Debugging section: Needed this to figure out that YearBuilt was an issue and switched to HouseAge instead. Commented out cause I don't need this printing anymore but I still want it documented
@@ -58,10 +58,10 @@ print(model.named_steps['regressor'].intercept_)
 '''
 
 #Regression Table and other diagnostic value(s)
-y_train_pred = model.predict(X_train)
+y_train_pred = model.predict(x_train)
 print('\nTraining Mean Squared Error:', mean_squared_error(y_train, y_train_pred))
-X_train_sm = sm.add_constant(X_train)  #Adds a constant term for the intercept
-model_sm = sm.OLS(y_train, X_train_sm).fit()
+x_train_sm = sm.add_constant(x_train)  #Adds a constant term for the intercept
+model_sm = sm.OLS(y_train, x_train_sm).fit()
 print()
 print(model_sm.summary())
 
