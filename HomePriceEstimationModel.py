@@ -32,6 +32,10 @@ x = x.drop(columns=['YearBuilt'])
 #Base home value for home with 0 sq ft, 0 bedrooms, etc. Adds/reduces value based on criteria. Adds random noise to account for real world fluctuations 
 y = 50000 + 200 * x['SquareFootage'] + 10000 * x['NumberOfBedrooms'] + 5000 * x['NumberOfBathrooms'] - 10000 * x['HouseAge'] + 10000 * x['Stories'] + 5000 * x['HasGarage'] + np.random.normal(0, 10000, 100)
 
+#If the training data had prices associated with each house, use this to define y instead:
+    #y = x['Price']
+    #x = x.drop(columns=['Price'])
+
 # Train-test split
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
 
