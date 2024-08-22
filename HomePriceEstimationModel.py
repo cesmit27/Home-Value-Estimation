@@ -145,19 +145,18 @@ def evaluate_house_price(model):
     if user_input in ['yes', 'y']:
         while True:
             try:
-                input_price = float(input("Enter the price you want to check this house at: ").replace(",",""))
-                float_input_price = float(input_price)
+                input_price = float(input("Enter the price you want to check this house at: ").replace(",", ""))
                 break
             except ValueError:
-                print('Invalid input. Please enter a valid number')
-        
-        # Evaluate the fairness of the input price
+                print('Invalid input. Please enter a valid number.')
+
+        #Evaluate the fairness of the input price
         if input_price < predicted_price * 0.9:
-            print(f"The price ${float_input_price:,.2f} is below market value.")
+            print(f"The price ${input_price:,.2f} is below market value.")
         elif input_price > predicted_price * 1.1:
-            print(f"The price ${float_input_price:,.2f} is above market value.")
+            print(f"The price ${input_price:,.2f} is above market value.")
         else:
-            print(f"The price ${float_input_price:,.2f} is fair based on the market.")
+            print(f"The price ${input_price:,.2f} is fair based on the market.")
 
 
 
