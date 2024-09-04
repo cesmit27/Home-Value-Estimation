@@ -140,9 +140,8 @@ def evaluate_house_price(model):
     predicted_price = model.predict(user_data)[0]
     print(f"\nThe predicted fair listing price for this house is: ${predicted_price:,.2f}")
     
-    #Check if user wants to input a price to evaluate
-    user_input = input("\nDo you want to check if a specific price is fair? (y/n): ").strip().lower()
-    if user_input in ['yes', 'y']:
+    user_input2 = input("\nDo you want to check if a specific price is fair? (y/n): ").strip().lower()
+    if user_input2 in ['yes', 'y']:
         while True:
             try:
                 input_price = float(input("Enter the price you want to check this house at: ").replace(",", ""))
@@ -159,8 +158,11 @@ def evaluate_house_price(model):
             print(f"The price ${input_price:,.2f} is fair based on the market.")
 
 
-
-evaluate_house_price(model)
+user_input = input("\nDo you want to evaluate a specific house price? (y/n): ").strip().lower()
+if user_input in ['yes', 'y']:
+    evaluate_house_price(model)
+else:
+    pass
 
 
 
